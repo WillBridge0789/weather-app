@@ -79,10 +79,12 @@ function getData() {
         currentWeather.conditions = response.data.weather[0].description; 
         currentWeather.temperature = Math.round(response.data.main.temp); 
         //currentWeather.image = response.data.name;  
-        console.log(currentWeather); 
+        console.log(currentWeather);
       })
       .catch(function (error) {
-        console.log(error);
+        document.getElementById('zipCode').style.backgroundColor = 'red';
+        console.log('Make sure to put in a Zip Code');
+      
       })
   } 
 
