@@ -1,4 +1,5 @@
-//import axios from 'axios'
+//----------------------Weather API key and URL------------------------//
+
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
 const API_KEY = '608e84446ac7199dba4b83b7a7b880b5';
 let zipCode;
@@ -12,60 +13,92 @@ let currentWeather = {
   weatherImage: ""
 }
 
-//-----------------------Variables:-------------------------------//
+//----------Unused Variables------------//
 
-const errorMessage = "";
+//const errorMessage = "";
+//let showConditions = "";
 
-let showConditions = "";
+//-----------------------Bootstrap styling:-------------------------------//
+
 let main = document.getElementById('main');
+
+let divCont = document.createElement('div');
+divCont.setAttribute('class', "container");
+main.appendChild(divCont);
+
+let divRow = document.createElement('div');
+//divRow.setAttribute('class', "row");
+divRow.className = 'row mt-3'
+divCont.appendChild(divRow);
+
+let divCol = document.createElement('div');
+//divCol.setAttribute('class', "col");
+divCol.className = 'col d-flex justify-content-center mt-3 mt-3 bg-light';
+divRow.appendChild(divCol);
+
+let divRow2 = document.createElement('div');
+//divRow2.setAttribute('class', "row");
+divRow.className = 'row mt-3'
+divCont.appendChild(divRow2);
+
+let divCol2 = document.createElement('div');
+//divCol.setAttribute('class', "col");
+divCol2.className = 'col d-flex justify-content-center mt-3 mt-3 bg-light btn-info';
+divRow2.appendChild(divCol2);
+
+let divRow3 = document.createElement('div');
+//divRow3.setAttribute('class', "row");
+divRow3.className = 'row m-3';
+divCont.appendChild(divRow3);
+
+let divCol3 = document.createElement('div');
+//divCol.setAttribute('class', "col");
+divCol3.className = 'col d-flex flex-column text-center mt-3 mb-3 bg-light text-md';
+divRow3.appendChild(divCol3);
+
+//-----------------------Variables:-------------------------------//
 
 let header = document.createElement('h1');
 header.id = 'topHead';
 header.innerText = 'Current Weather';
-main.appendChild(header);
+divCol.appendChild(header);
 
 let button = document.createElement('button');
 button.id = 'btn';
 button.innerText = 'Check Weather';
-main.appendChild(button);
+divCol2.appendChild(button);
 
 let input = document.createElement("input");
 input.id = 'zipCode';
 input.setAttribute("type", "text");
-main.appendChild(input);
+divCol2.appendChild(input);
 
 let cityHeader = document.createElement('h2');
 cityHeader.id = 'cityHead';
 cityHeader.textContent = 'City';
-main.appendChild(cityHeader);
+divCol3.appendChild(cityHeader);
 
 let cityValue = document.createElement('p');
 cityValue.textContent = currentWeather.city;
-main.appendChild(cityValue);
+divCol3.appendChild(cityValue);
 
 let weatherCond = document.createElement('h2');
 weatherCond.id = 'weatherCond';
 weatherCond.textContent = 'Conditions';
-main.appendChild(weatherCond);
+divCol3.appendChild(weatherCond);
 
 let weathValue = document.createElement('p');
 weathValue.textContent = currentWeather.conditions;
-main.appendChild(weathValue);
+divCol3.appendChild(weathValue);
 
 let currentTemp = document.createElement('h2');
 currentTemp.id = 'currentTemp';
 currentTemp.textContent = 'Temperature';
-main.appendChild(currentTemp);
+divCol3.appendChild(currentTemp);
 
 let tempValue = document.createElement('p');
 tempValue.textContent = currentWeather.temperature;
-main.appendChild(tempValue);
-
-
-
-
-
-
+divCol3.appendChild(tempValue);
 
 //------------------------UNUSED:------------------------------//
 
@@ -91,6 +124,16 @@ main.appendChild(tempValue);
 
 //------------------------FUNCTIONS:------------------------------//
 
+/*function show() {
+  if (options.zip) {
+    return getData;
+  } else {
+    cityHeader.style.visibility = "hidden";
+    weatherCond.style.visibilty = "hidden";
+    currentTemp.style.visibility = "hidden";
+  }
+} */
+
 function getData() {
     let options = {
         baseURL: BASE_URL,
@@ -105,7 +148,7 @@ function getData() {
         console.log(response.data);
         currentWeather.city = response.data.name;
         currentWeather.conditions = response.data.weather[0].description; 
-        currentWeather.temperature = Math.round(response.data.main.temp); 
+        currentWeather.temperature = Math.round(response.data.main.temp);
         console.log(currentWeather);
         cityValue.innerText = currentWeather.city;
         weathValue.innerText = currentWeather.conditions;
