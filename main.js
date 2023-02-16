@@ -3,46 +3,75 @@ const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
 const API_KEY = '608e84446ac7199dba4b83b7a7b880b5';
 let zipCode;
 
+//------------------------Objects:--------------------------------//
+
+let currentWeather = {
+  city: "",
+  conditions: "",
+  temperature: "",
+  weatherImage: ""
+}
+
 //-----------------------Variables:-------------------------------//
 
 const errorMessage = "";
 
 let showConditions = "";
+let main = document.getElementById('main');
 
 let header = document.createElement('h1');
+header.id = 'topHead';
 header.innerText = 'Current Weather';
-document.body.appendChild(header);
+main.appendChild(header);
 
 let button = document.createElement('button');
 button.id = 'btn';
 button.innerText = 'Check Weather';
-document.body.appendChild(button);
+main.appendChild(button);
 
 let input = document.createElement("input");
 input.id = 'zipCode';
 input.setAttribute("type", "text");
-document.body.appendChild(input);
+main.appendChild(input);
 
-let paragraph = document.createElement('p');
-paragraph.id = 'UserData';
-document.body.appendChild(paragraph);
+let cityHeader = document.createElement('h2');
+cityHeader.id = 'cityHead';
+cityHeader.textContent = 'City';
+main.appendChild(cityHeader);
+
+let cityValue = document.createElement('p');
+cityValue.textContent = currentWeather.city;
+main.appendChild(cityValue);
+
+let weatherCond = document.createElement('h2');
+weatherCond.id = 'weatherCond';
+weatherCond.textContent = 'Conditions';
+main.appendChild(weatherCond);
+
+let weathValue = document.createElement('p');
+weathValue.textContent = currentWeather.conditions;
+main.appendChild(weathValue);
+
+let currentTemp = document.createElement('h2');
+currentTemp.id = 'currentTemp';
+currentTemp.textContent = 'Temperature';
+main.appendChild(currentTemp);
+
+let tempValue = document.createElement('p');
+tempValue.textContent = currentWeather.temperature;
+main.appendChild(tempValue);
 
 
 
-//------------------------Objects:--------------------------------//
 
-let currentWeather = {
-    city: "",
-    conditions: "",
-    temperature: "",
-    weatherImage: ""
-}
 
-//------------------------FUNCTIONS:------------------------------//
 
-function init() {
 
-}
+//------------------------UNUSED:------------------------------//
+
+/* function init() {
+  cityHeader.innerHTML = currentWeather.city;
+} /*
 
 /*function tempConvert() {
 
@@ -58,9 +87,9 @@ function init() {
     document.getElementById('userData').appendChild(div);
 } */
 
-function changeHTML() {
+//function changeHTML() {}
 
-}
+//------------------------FUNCTIONS:------------------------------//
 
 function getData() {
     let options = {
@@ -74,23 +103,24 @@ function getData() {
     axios.get('/weather', options)
       .then(function (response) {
         console.log(response.data);
-        //console.log();
         currentWeather.city = response.data.name;
         currentWeather.conditions = response.data.weather[0].description; 
         currentWeather.temperature = Math.round(response.data.main.temp); 
-        //currentWeather.image = response.data.name;  
         console.log(currentWeather);
+        cityValue.innerText = currentWeather.city;
+        weathValue.innerText = currentWeather.conditions;
+        tempValue.innerText = currentWeather.temperature + ' ' + 'F';
       })
       .catch(function (error) {
         document.getElementById('zipCode').style.backgroundColor = 'red';
         console.log('Make sure to put in a Zip Code');
       
       })
+
   } 
 
 //------------------------Event Listeners:------------------------------//
 
 //When submitting zipCode to retrieve data from weather api
 document.getElementById('btn').addEventListener('click', getData);
-
 console.log(currentWeather);
