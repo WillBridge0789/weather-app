@@ -1,7 +1,7 @@
 //import axios from 'axios'
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
 const API_KEY = '608e84446ac7199dba4b83b7a7b880b5';
-
+let zipCode;
 
 //-----------------------Variables:-------------------------------//
 
@@ -19,8 +19,14 @@ button.innerText = 'Check Weather';
 document.body.appendChild(button);
 
 let input = document.createElement("input");
+input.id = 'zipCode';
 input.setAttribute("type", "text");
 document.body.appendChild(input);
+
+let paragraph = document.createElement('p');
+paragraph.id = 'UserData';
+document.body.appendChild(paragraph);
+
 
 
 //------------------------Objects:--------------------------------//
@@ -29,7 +35,7 @@ let currentWeather = {
     city: "",
     conditions: "",
     temperature: "",
-    image: ""
+    weatherImage: ""
 }
 
 //------------------------FUNCTIONS:------------------------------//
@@ -42,15 +48,15 @@ function init() {
 
 }*/
 
-function buildHTML() {
-    document.getElementById('userData').innerHTML = ''
+/* function buildHTML() {
+    document.getElementById('userData').innerHTML = '';
     let img = document.createElement('img');
     img.setAttribute('src', currentWeather.image);
     let div = document.createElement('div');
     div.innerText = `${currentWeather.city.temperature.weather}`;
     document.getElementById('userData').appendChild(img);
     document.getElementById('userData').appendChild(div);
-}
+} */
 
 function changeHTML() {
 
@@ -61,17 +67,19 @@ function getData() {
         baseURL: BASE_URL,
         params: {
             appid: API_KEY,
-            zip: 40517,
+            zip: document.getElementById('zipCode').value,
             units: 'imperial'
           }
     }
     axios.get('/weather', options)
       .then(function (response) {
-        console.log(response);
+        console.log(response.data);
         //console.log();
-        currentWeather.user = response.data.results[0];
-        insertUser()
-  
+        currentWeather.city = response.data.name;
+        currentWeather.conditions = response.data.weather[0].description; 
+        currentWeather.temperature = Math.round(response.data.main.temp); 
+        //currentWeather.image = response.data.name;  
+        console.log(currentWeather); 
       })
       .catch(function (error) {
         console.log(error);
@@ -82,3 +90,5 @@ function getData() {
 
 //When submitting zipCode to retrieve data from weather api
 document.getElementById('btn').addEventListener('click', getData);
+
+console.log(currentWeather);
