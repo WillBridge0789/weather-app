@@ -6,6 +6,14 @@ Making an application that outputs the weather for a location based on the users
 * Error message(**errorMessage**)
 * Show Conditions(**showConditions**)
 * Zip Code(**zipCode**)
+* headers
+    * h1
+        * App name at the top
+    * h3
+        * City 
+        * Conditions
+        * Temperature
+        * Weather Graphic
 
 ## Objects:
 * State Object?
@@ -24,7 +32,7 @@ Making an application that outputs the weather for a location based on the users
 ## Functions:
 * **init()**
 * **tempConvert()**
-* **buildHTML()** **<--**
+* **buildHTML()** **<--** *may or may not need*
     * Show city, populate with state object **currentWeather**-->**currentWeather.city**
     * Show temperature
     * Change **src** of the **img** tag to the **currentWeather.image**
@@ -42,6 +50,8 @@ Making an application that outputs the weather for a location based on the users
 
 # START
 ## Procedure:
-**1.** On page load, page should display zipcode input box and a button that "onClick and/or onSubmit" lets the app find the weather of the area matching the zipcode. **getData()**
+**1.** On page load, page should display zipcode input box and a button that "**onClick** and/or **onSubmit**" lets the app find the weather of the area matching the zipcode. **getData()**
 
-**2.** After zipcode input and button is clicked, it should output the state object **currentWeather** with the zipcode areas city, temperature, conditions and image of corresponding conditions. **Fill the HTML with Data**
+**2.** After zipcode input and button is clicked, **THEN** it should output the state object **currentWeather** with the zipcode areas city, temperature, conditions and image of corresponding conditions. **Fill the HTML with Data**
+
+**3.** IF no value was put in to the input box, let user know that they need to put in a value for it to work. **.catch** 

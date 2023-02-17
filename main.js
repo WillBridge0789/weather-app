@@ -2,7 +2,6 @@
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
 const API_KEY = '608e84446ac7199dba4b83b7a7b880b5';
-let zipCode;
 
 //---------------------------OBJECTS:--------------------------------//
 
@@ -22,22 +21,22 @@ main.appendChild(divCont);
 
 let divRow = document.createElement('div');
 //divRow.setAttribute('class', "row");
-divRow.className = 'row mt-3'
+divRow.className = 'row mt-3 p-3'
 divCont.appendChild(divRow);
 
 let divCol = document.createElement('div');
 //divCol.setAttribute('class', "col");
-divCol.className = 'col d-flex justify-content-center mt-3 mt-3 bg-light';
+divCol.className = 'col d-flex justify-content-center mt-3 mt-3 p-3 bg-light border-bottom rounded-pill text-secondary';
 divRow.appendChild(divCol);
 
 let divRow2 = document.createElement('div');
 //divRow2.setAttribute('class', "row");
-divRow.className = 'row mt-3'
+divRow.className = 'row mt-3';
 divCont.appendChild(divRow2);
 
 let divCol2 = document.createElement('div');
 //divCol.setAttribute('class', "col");
-divCol2.className = 'col d-flex justify-content-center mt-3 mt-3 bg-light btn-info';
+divCol2.className = 'col d-flex justify-content-center mt-3 mt-3 p-3 bg-light border-bottom rounded-pill text-secondary';
 divRow2.appendChild(divCol2);
 
 let divRow3 = document.createElement('div');
@@ -47,7 +46,7 @@ divCont.appendChild(divRow3);
 
 let divCol3 = document.createElement('div');
 //divCol.setAttribute('class', "col");
-divCol3.className = 'col d-flex flex-column text-center mt-3 mb-3 bg-light text-md';
+divCol3.className = 'col d-flex flex-column text-center mt-3 mb-3 bg-light border-bottom rounded-pill text-secondary';
 divRow3.appendChild(divCol3);
 
 //-----------------------------VARIABLES:-------------------------------//
@@ -134,6 +133,7 @@ console.log(currentWeather);
 
 //const errorMessage = "";
 //let showConditions = "";
+//let zipCode;
 
 //------------------------UNUSED FUNCTIONS:------------------------------//
 
