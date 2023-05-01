@@ -1,0 +1,16 @@
+html {
+    background-color: rgb(144, 164, 184);
+    box-shadow: 5px 5px 5px rgb(57, 59, 65);
+}
+
+body {
+    background-color: rgb(144, 164, 184);
+}
+
+h1 {
+    color:rgb(66, 86, 117);
+}
+
+h2 {
+    color: rgb(59, 74, 96);
+}
